@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 salut Paul version 4
 =======
 salut edouard
 >>>>>>> f1d81a24fe3ca180c4dc7614d36203fe1cc2691f
+=======
+salut edouard 1
+>>>>>>> a1883cbe85bd9021afd6a3803ce42f1831053a2b
