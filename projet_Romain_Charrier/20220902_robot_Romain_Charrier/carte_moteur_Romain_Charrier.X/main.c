@@ -4,6 +4,7 @@
 #include "ChipConfig.h"
 #include "IO.h"
 #include "timer.h"
+#include "PWM.h"
 
 int main ( void) {
 // I n i t i a l i s a t i o n de l ? o s c i l l a t e u r
@@ -13,6 +14,9 @@ InitIO();
 
 InitTimer23();
 InitTimer1();
+
+InitPWM();
+PWMSetSpeed(50);
 
 LED_BLANCHE = 1 ;
 LED_BLEUE = 1 ;
