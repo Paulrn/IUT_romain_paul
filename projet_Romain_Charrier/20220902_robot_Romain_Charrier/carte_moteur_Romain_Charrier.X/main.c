@@ -6,23 +6,25 @@
 #include "timer.h"
 #include "PWM.h"
 
-int main ( void) {
-// I n i t i a l i s a t i o n de l ? o s c i l l a t e u r
-InitOscillator();
-// Configuration des éntres sorties
-InitIO();
+int main(void) {
+    // I n i t i a l i s a t i o n de l ? o s c i l l a t e u r
+    InitOscillator();
+    // Configuration des éntres sorties
+    InitIO();
 
-InitTimer23();
-InitTimer1();
+    InitTimer23();
+    InitTimer1();
 
-InitPWM();
-PWMSetSpeed(50);
+    InitPWM();
+    PWMSetSpeed(-20, 1);
+    // Vitesse en %, 1 moteur Gauche ou 0 moteur droit
+    
+    LED_BLANCHE = 1;
+    LED_BLEUE = 1;
+    LED_ORANGE = 1;
 
-LED_BLANCHE = 1 ;
-LED_BLEUE = 1 ;
-LED_ORANGE = 1 ;
-// Boucle P r i n c i p a l e
-while ( 1 ) {
-   
-} // f i n main
+    // Boucle P r i n c i p a l e
+    while (1) {
+
+    } // f i n main
 }
