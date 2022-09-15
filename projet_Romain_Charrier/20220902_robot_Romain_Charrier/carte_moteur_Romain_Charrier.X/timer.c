@@ -4,6 +4,7 @@
 #include "ChipConfig.h"
 #include "IO.h"
 #include "timer.h"
+#include "PWM.h"
 
 unsigned char toggle = 0;
 
@@ -31,14 +32,13 @@ void InitTimer23(void) {
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
     LED_ORANGE = !LED_ORANGE;
-    IFS0bits.T3IF = 0; // Cle a r Timer3 I n t e r r u p t Flag
     if (toggle == 0) {
-        PWMSetSpeed(2 0, MOTEUR_DROIT);
-        PWMSetSpeed(2 0, MOTEUR_GAUCHE);
+        PWMSetSpeedConsigne(37, MOTEUR_DROIT);
+        PWMSetSpeedConsigne(37, MOTEUR_GAUCHE);
         toggle = 1;
     } else {
-        PWMSetSpeed(?20, MOTEUR_DROIT);
-        PWMSetSpeed(?20, MOTEUR_GAUCHE);
+        PWMSetSpeedConsigne(-37, MOTEUR_DROIT);
+        PWMSetSpeedConsigne(-37, MOTEUR_GAUCHE);
         toggle = 0;
     }
 }
@@ -54,7 +54,7 @@ void InitTimer1(void) {
     //01 = 1:8 prescale value
     //00 = 1:1 prescale value
     T1CONbits.TCS = 0; //clock source = internal clock
-    PR1 = 833;
+    PR1 = 50000;
 
     IFS0bits.T1IF = 0; // Clear Timer Interrupt Flag
     IEC0bits.T1IE = 1; // Enable Timer interrupt
@@ -66,4 +66,5 @@ void InitTimer1(void) {
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
     LED_BLANCHE = !LED_BLANCHE;
+    PWMUpdateSpeed();
 }

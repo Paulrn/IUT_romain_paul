@@ -5,6 +5,7 @@
 #include "IO.h"
 #include "timer.h"
 #include "PWM.h"
+#include "adc.h"
 
 int main(void) {
     // I n i t i a l i s a t i o n de l ? o s c i l l a t e u r
@@ -16,8 +17,6 @@ int main(void) {
     InitTimer1();
 
     InitPWM();
-    PWMSetSpeed(-20, 1);
-    // Vitesse en %, 1 moteur Gauche ou 0 moteur droit
     
     LED_BLANCHE = 1;
     LED_BLEUE = 1;
