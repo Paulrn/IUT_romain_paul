@@ -5,6 +5,7 @@
 #include "IO.h"
 #include "timer.h"
 #include "PWM.h"
+#include "adc.h"
 
 unsigned char toggle = 0;
 
@@ -33,12 +34,12 @@ void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
     LED_ORANGE = !LED_ORANGE;
     if (toggle == 0) {
-        PWMSetSpeedConsigne(37, MOTEUR_DROIT);
-        PWMSetSpeedConsigne(37, MOTEUR_GAUCHE);
+        PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+        PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
         toggle = 1;
     } else {
-        PWMSetSpeedConsigne(-37, MOTEUR_DROIT);
-        PWMSetSpeedConsigne(-37, MOTEUR_GAUCHE);
+        PWMSetSpeedConsigne(0, MOTEUR_DROIT);
+        PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
         toggle = 0;
     }
 }
@@ -67,4 +68,5 @@ void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
     LED_BLANCHE = !LED_BLANCHE;
     PWMUpdateSpeed();
+    ADC1StartConversionSequence();
 }
