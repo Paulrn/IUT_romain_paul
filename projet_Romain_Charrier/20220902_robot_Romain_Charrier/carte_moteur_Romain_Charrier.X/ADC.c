@@ -54,10 +54,15 @@ void InitADC1(void) {
     ANSELCbits.ANSC0 = 1;
     ANSELCbits.ANSC11 = 1;
     ANSELGbits.ANSG9 = 1;
+//    ANSELEbits.ANSE15 = 1;
+//    ANSELBbits.ANSB1 = 1;
 
+//    AD1CSSLbits.CSS3 = 1; // Enable AN3 for scan
     AD1CSSLbits.CSS6 = 1; // Enable AN6 for scan
     AD1CSSLbits.CSS11 = 1; // Enable AN11 for scan
+//    AD1CSSLbits.CSS15 = 1; // Enable AN15 for scan
     AD1CSSHbits.CSS16 = 1; // Enable AN16 for scan
+
 
     /* Assign MUXA inputs */
     AD1CHS0bits.CH0SA = 0; // CH0SA bits ignored for CH0 +ve input selection
@@ -71,9 +76,11 @@ void InitADC1(void) {
 /* This is ADC interrupt routine */
 void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt(void) {
     IFS0bits.AD1IF = 0;
-    ADCResult[0] = ADC1BUF0; // Read the AN-scan input 1 conversion result
-    ADCResult[1] = ADC1BUF1; // Read the AN3 conversion result
-    ADCResult[2] = ADC1BUF2; // Read the AN5 conversion result
+    ADCResult[0] = ADC1BUF0; // Read the AN3 input 1 conversion result
+    ADCResult[1] = ADC1BUF1; // Read the AN9 conversion result
+    ADCResult[2] = ADC1BUF2; // Read the AN11 conversion result
+//    ADCResult[3] = ADC1BUF3; // Read the AN15 conversion result
+//    ADCResult[4] = ADC1BUF4; // Read the AN16 conversion result
     ADCConversionFinishedFlag = 1;
 }
 

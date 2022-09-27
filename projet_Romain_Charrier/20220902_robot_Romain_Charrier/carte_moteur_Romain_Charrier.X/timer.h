@@ -7,6 +7,7 @@ void SetFreqTimer1(float freq);
 
 void InitTimer4(void);
 void SetFreqTimer4(float freq);
+extern unsigned long timestamp ;
 
 #endif
 
