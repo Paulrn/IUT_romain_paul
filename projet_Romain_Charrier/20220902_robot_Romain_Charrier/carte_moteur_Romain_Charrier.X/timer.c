@@ -34,16 +34,6 @@ void InitTimer23(void) {
 
 void __attribute__((interrupt, no_auto_psv)) _T3Interrupt(void) {
     IFS0bits.T3IF = 0; // Clear Timer3 Interrupt Flag
-//    LED_ORANGE = !LED_ORANGE;
-//    if (toggle == 0) {
-//        PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-//        PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
-//        toggle = 1;
-//    } else {
-//        PWMSetSpeedConsigne(0, MOTEUR_DROIT);
-//        PWMSetSpeedConsigne(0, MOTEUR_GAUCHE);
-//        toggle = 0;
-//    }
 }
 
 //Initialisation d?un timer 16 bits
@@ -70,7 +60,6 @@ void InitTimer1(void) {
 
 void __attribute__((interrupt, no_auto_psv)) _T1Interrupt(void) {
     IFS0bits.T1IF = 0;
-//    LED_BLEUE = !LED_BLEUE;
     PWMUpdateSpeed();
     ADC1StartConversionSequence();
 }
@@ -112,7 +101,6 @@ void InitTimer4(void) {
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
     IFS1bits.T4IF = 0;
-//    LED_ORANGE = !LED_ORANGE;
     timestamp++;
     OperatingSystemLoop();
 }
