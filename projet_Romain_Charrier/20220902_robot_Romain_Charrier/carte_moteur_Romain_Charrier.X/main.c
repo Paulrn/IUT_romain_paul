@@ -44,23 +44,6 @@ int main(void) {
             robotState.distanceTelemetreExtDroit = 34 / volts - 5;
 
         }
-
-        if (robotState.distanceTelemetreGauche >= 30) {
-            LED_BLANCHE = 1;
-        } else {
-            LED_BLANCHE = 0;
-        }
-        if (robotState.distanceTelemetreCentre >= 30) {
-            LED_BLEUE = 1;
-        } else {
-            LED_BLEUE = 0;
-        }
-        if (robotState.distanceTelemetreDroit >= 30) {
-            LED_ORANGE = 1;
-        } else {
-            LED_ORANGE = 0;
-        }
-
     } // f i n main
 }
 
@@ -155,16 +138,16 @@ void SetNextRobotStateInAutomaticMode() {
 
     //Détermination de la position des obstacles en fonction des télémètres
     if (robotState.distanceTelemetreExtGauche < 15) //Obstacle à l'extreme droite
-        positionObstacle |= 1<<4;
+       positionObstacle = positionObstacle + 16; //attribue un 1 au 5eme bit de positionObstacle
     if (robotState.distanceTelemetreGauche < 18) //Obstacle à droite
-        positionObstacle |= 1<<3;
+       positionObstacle = positionObstacle + 8; //attribue un 1 au 4eme bit de positionObstacle
     if (robotState.distanceTelemetreCentre < 20) //Obstacle au centre
-        positionObstacle |= 1<<2;
+       positionObstacle = positionObstacle + 4; //attribue un 1 au 3eme bit de positionObstacle
     if (robotState.distanceTelemetreDroit < 18) //Obstacle à gauche
-        positionObstacle |= 1<<1;
+       positionObstacle = positionObstacle + 2; //attribue un 1 au 2eme bit de positionObstacle
     if (robotState.distanceTelemetreExtDroit < 15) //Obstacle à l'extreme gauche
-        positionObstacle |= 1<<0;
-
+       positionObstacle = positionObstacle + 8; //attribue un 1 au 1er bit de positionObstacle
+       
     //Détermination de l?état à venir du robot
     //TABLE DE VERITE.exe
     switch (positionObstacle) {
