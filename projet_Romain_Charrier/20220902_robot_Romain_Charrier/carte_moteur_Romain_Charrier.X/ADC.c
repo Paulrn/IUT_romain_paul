@@ -1,9 +1,14 @@
 #include <xc.h>
-#include "adc.h"
-//#include "main.h"
+#include "ChipConfig.h"
+#include "IO.h"
+#include "timer.h"
+#include "PWM.h"
+#include "ADC.h"
+#include "robot.h"
+#include "main.h"
 
 unsigned char ADCResultIndex = 0;
-static unsigned int ADCResult[4];
+static unsigned int ADCResult[5];
 unsigned char ADCConversionFinishedFlag = 0;
 
 /****************************************************************************************************/
@@ -51,16 +56,16 @@ void InitADC1(void) {
     //Configuration des ports
     /************************************************************/
     //ADC utilisés : 16(G9)-11(C11)-6(C0)
-    ANSELCbits.ANSC0 = 1;
-    ANSELCbits.ANSC11 = 1;
-    ANSELGbits.ANSG9 = 1;
-//    ANSELEbits.ANSE15 = 1;
-//    ANSELBbits.ANSB1 = 1;
+    ANSELEbits.ANSE15 = 1; // EXGauche
+    ANSELGbits.ANSG9 = 1; // Gauche
+    ANSELCbits.ANSC11 = 1; // Centre
+    ANSELCbits.ANSC0 = 1; // DROIT
+    ANSELBbits.ANSB1 = 1; // EXDROIT
 
-//    AD1CSSLbits.CSS3 = 1; // Enable AN3 for scan
+    AD1CSSLbits.CSS15 = 1; // Enable AN15 for scan
+    AD1CSSLbits.CSS3 = 1; // Enable AN1 for scan
     AD1CSSLbits.CSS6 = 1; // Enable AN6 for scan
     AD1CSSLbits.CSS11 = 1; // Enable AN11 for scan
-//    AD1CSSLbits.CSS15 = 1; // Enable AN15 for scan
     AD1CSSHbits.CSS16 = 1; // Enable AN16 for scan
 
 
@@ -76,11 +81,11 @@ void InitADC1(void) {
 /* This is ADC interrupt routine */
 void __attribute__((interrupt, no_auto_psv)) _AD1Interrupt(void) {
     IFS0bits.AD1IF = 0;
-    ADCResult[0] = ADC1BUF0; // Read the AN3 input 1 conversion result
-    ADCResult[1] = ADC1BUF1; // Read the AN9 conversion result
-    ADCResult[2] = ADC1BUF2; // Read the AN11 conversion result
-//    ADCResult[3] = ADC1BUF3; // Read the AN15 conversion result
-//    ADCResult[4] = ADC1BUF4; // Read the AN16 conversion result
+    ADCResult[0] = ADC1BUF3; // Read the AN-scan input 1 conversion result   15(E15)
+    ADCResult[1] = ADC1BUF4; // Read the AN1 conversion result               16(G9)
+    ADCResult[2] = ADC1BUF2; // Read the AN2 conversion result               11(C11)
+    ADCResult[3] = ADC1BUF1; // Read the AN3 conversion result               6(C0)
+    ADCResult[4] = ADC1BUF0; // Read the AN4 conversion result               3(B1)
     ADCConversionFinishedFlag = 1;
 }
 

@@ -63,7 +63,7 @@ void InitTimer1(void) {
     IEC0bits.T1IE = 1; // Enable Timer interrupt
     T1CONbits.TON = 1; // Enable Timer
     
-    SetFreqTimer1(2.5);
+    SetFreqTimer1(2000);
 }
 
 //Interruption du timer 1
