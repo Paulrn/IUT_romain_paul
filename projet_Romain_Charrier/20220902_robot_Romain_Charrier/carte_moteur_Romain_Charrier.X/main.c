@@ -31,7 +31,18 @@ int main(void) {
 
         if (ADCIsConversionFinished() == 1) { //si la conversion est fini
             unsigned int * result = ADCGetResult(); //on mets result dans la meme emplacement memoire que ADCGetResult
-            ADCClearConversionFinishedFlag(); //permet de remettre le flag à 0     
+            ADCClearConversionFinishedFlag(); //permet de remettre le flag à 0            
+            float volts = ((float) result [2]) * 3.3 / 4096 * 3.2;
+            robotState.distanceTelemetreDroit = 34 / volts - 5;
+            volts = ((float) result [1]) * 3.3 / 4096 * 3.2;
+            robotState.distanceTelemetreCentre = 34 / volts - 5;
+            volts = ((float) result [0]) * 3.3 / 4096 * 3.2;
+            robotState.distanceTelemetreGauche = 34 / volts - 5;
+//            volts = ((float) result [3]) * 3.3 / 4096 * 3.2;
+//            robotState.distanceTelemetreExtGauche = 34 / volts - 5;
+//            float volts = ((float) result [4]) * 3.3 / 4096 * 3.2;
+//            robotState.distanceTelemetreExtDroit = 34 / volts - 5;
+            
         }
 
         if (robotState.distanceTelemetreDroit >= 30) {
@@ -48,22 +59,6 @@ int main(void) {
             LED_ORANGE = 1;
         } else {
             LED_ORANGE = 0;
-        }
-
-
-        if (ADCIsConversionFinished() == 1) {
-            ADCClearConversionFinishedFlag();
-            unsigned int * result = ADCGetResult();
-            float volts = ((float) result [2]) * 3.3 / 4096 * 3.2;
-            robotState.distanceTelemetreDroit = 34 / volts - 5;
-            volts = ((float) result [1]) * 3.3 / 4096 * 3.2;
-            robotState.distanceTelemetreCentre = 34 / volts - 5;
-            volts = ((float) result [0]) * 3.3 / 4096 * 3.2;
-            robotState.distanceTelemetreGauche = 34 / volts - 5;
-//            volts = ((float) result [3]) * 3.3 / 4096 * 3.2;
-//            robotState.distanceTelemetreExtGauche = 34 / volts - 5;
-//            float volts = ((float) result [4]) * 3.3 / 4096 * 3.2;
-//            robotState.distanceTelemetreExtDroit = 34 / volts - 5;
         }
 
     } // f i n main
