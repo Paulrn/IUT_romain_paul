@@ -25,7 +25,6 @@ int main(void) {
 
     InitADC1();
 
-
     // Boucle Principale
     while (1) {
 
@@ -141,13 +140,13 @@ void SetNextRobotStateInAutomaticMode() {
        positionObstacle = positionObstacle + 16; //attribue un 1 au 5eme bit de positionObstacle
     if (robotState.distanceTelemetreGauche < 18) //Obstacle à droite
        positionObstacle = positionObstacle + 8; //attribue un 1 au 4eme bit de positionObstacle
-    if (robotState.distanceTelemetreCentre < 20) //Obstacle au centre
+    if (robotState.distanceTelemetreCentre < 40) //Obstacle au centre
        positionObstacle = positionObstacle + 4; //attribue un 1 au 3eme bit de positionObstacle
     if (robotState.distanceTelemetreDroit < 18) //Obstacle à gauche
        positionObstacle = positionObstacle + 2; //attribue un 1 au 2eme bit de positionObstacle
     if (robotState.distanceTelemetreExtDroit < 15) //Obstacle à l'extreme gauche
        positionObstacle = positionObstacle + 8; //attribue un 1 au 1er bit de positionObstacle
-       
+   
     //Détermination de l?état à venir du robot
     //TABLE DE VERITE.exe
     switch (positionObstacle) {
@@ -256,4 +255,6 @@ void SetNextRobotStateInAutomaticMode() {
             if (nextStateRobot != stateRobot - 1) //si l'action n'est pas deja en cours
                 stateRobot = nextStateRobot; // alors faire l'action
     }
+    
+        LED_BLEUE = !LED_BLEUE;
 }

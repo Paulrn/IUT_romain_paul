@@ -53,7 +53,7 @@ void InitTimer1(void) {
     IEC0bits.T1IE = 1; // Enable Timer interrupt
     T1CONbits.TON = 1; // Enable Timer
     
-    SetFreqTimer1(2000);
+    SetFreqTimer1(1000);
 }
 
 //Interruption du timer 1
@@ -96,7 +96,7 @@ void InitTimer4(void) {
     IEC1bits.T4IE = 1; // Enable Timer interrupt
     T4CONbits.TON = 1; // Enable Timer
     
-    SetFreqTimer4(1000);
+    SetFreqTimer4(2000);
 }
 
 void __attribute__((interrupt, no_auto_psv)) _T4Interrupt(void) {
