@@ -145,7 +145,7 @@ void SetNextRobotStateInAutomaticMode() {
     if (robotState.distanceTelemetreDroit < 18) //Obstacle à gauche
        positionObstacle = positionObstacle + 2; //attribue un 1 au 2eme bit de positionObstacle
     if (robotState.distanceTelemetreExtDroit < 15) //Obstacle à l'extreme gauche
-       positionObstacle = positionObstacle + 8; //attribue un 1 au 1er bit de positionObstacle
+       positionObstacle = positionObstacle + 1; //attribue un 1 au 1er bit de positionObstacle
    
     //Détermination de l?état à venir du robot
     //TABLE DE VERITE.exe
