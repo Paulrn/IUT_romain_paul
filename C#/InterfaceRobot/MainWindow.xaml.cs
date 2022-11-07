@@ -1,5 +1,8 @@
-﻿using System;
+﻿
+using ExtendedSerialPort;
+using System;
 using System.Collections.Generic;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,13 @@ namespace InterfaceRobot
     /// </summary>
     public partial class MainWindow : Window
     {
+        ReliableSerialPort serialPort1;
+
         public MainWindow()
         {
             InitializeComponent();
+            serialPort1 = new ReliableSerialPort("COM6", 115200, Parity.None, 8, StopBits.One);
+            serialPort1.Open();
         }
 
         int couleur = 0;
@@ -39,25 +46,23 @@ namespace InterfaceRobot
                 case (4): buttonEnvoyer.Background = Brushes.Beige; break;
             }
 
-            emissionTextBox.SelectionStart = 0;
-            emissionTextBox.SelectionLength = 20;
-            string selectedText = emissionTextBox.SelectedText;
+            SendMessage();
 
-            emissionTextBox.Text = "";
-            receptionTextBox.Text += "Recu : " + selectedText + "\n";
         }
 
         private void emissionTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
             {
-                emissionTextBox.SelectionStart = 0;
-                emissionTextBox.SelectionLength = 20;
-                string selectedText = emissionTextBox.SelectedText;
-
-                emissionTextBox.Text = "";
-                receptionTextBox.Text += "Recu : " + selectedText + "\n";
+                SendMessage();
             }
+        }
+
+        private void SendMessage()
+        {
+            //receptionTextBox.Text += "Recu : " + emissionTextBox.Text + "\n";
+            serialPort1.Write(emissionTextBox.Text);    //ecris sur le port1
+            emissionTextBox.Text = "";  //clear la text box emission
         }
     }
 }
