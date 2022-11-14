@@ -23,5 +23,8 @@
             <TextBox x:Name="receptionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True"/>
         </GroupBox>
         <Button x:Name="buttonEnvoyer" Content="Envoie" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Click="buttonEnvoyer_Click"/>
+        <Button x:Name="buttonClear" Content="Clear" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Click="buttonClear_Click"/>
+        <Button x:Name="test" Content="Test" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="75" Click="test_Click"/>
+
     </Grid>
 </Window>
