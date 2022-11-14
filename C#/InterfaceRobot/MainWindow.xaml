@@ -18,13 +18,13 @@
         <GroupBox x:Name="Emission" Header="Emission" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0">
             <TextBox x:Name="emissionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" KeyUp="emissionTextBox_KeyUp"/>
         </GroupBox>
-        
+
         <GroupBox x:Name="Reception" Header="Reception" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0">
             <TextBox x:Name="receptionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True"/>
         </GroupBox>
         <Button x:Name="buttonEnvoyer" Content="Envoie" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Click="buttonEnvoyer_Click"/>
         <Button x:Name="buttonClear" Content="Clear" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Click="buttonClear_Click"/>
-        <Button x:Name="test" Content="Test" HorizontalAlignment="Stretch" VerticalAlignment="Center" Width="75" Click="test_Click"/>
+        <Button x:Name="test" Content="Test" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="test_Click" Grid.ColumnSpan="2" Margin="340,0,338,0" Grid.Row="1" Height="40"/>
 
     </Grid>
 </Window>
