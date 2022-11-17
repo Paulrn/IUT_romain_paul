@@ -45,14 +45,23 @@ namespace InterfaceRobot
         private void SerialPort1_DataReceived(object sender, DataReceivedArgs e)
         {
             robot.receivedText += Encoding.UTF8.GetString(e.Data, 0, e.Data.Length);
+            foreach (var c in e.Data)
+            {
+                robot.byteListReceived.Enqueue(c);
+            }
         }
 
         private void TimerAffichage_Tick(object sender, EventArgs e)
         {
+            while(robot.byteListReceived.Count() > 0)
+            {
+                var c = robot.byteListReceived.Dequeue();
+                receptionTextBox.Text += "0x" + c.ToString("X2") + " ";                
+            }
             if (robot.receivedText != "")
             {
-                receptionTextBox.Text += robot.receivedText;
-                robot.receivedText = "";        
+                receptionTextBox.Text += robot.receivedText;                
+                robot.receivedText = "";
             }
         }
 
@@ -71,7 +80,7 @@ namespace InterfaceRobot
             }
 
             SendMessage();
-            receptionTextBox.Text += "\n";
+            robot.receivedText = "\n";
         }
 
         private void emissionTextBox_KeyUp(object sender, KeyEventArgs e)
@@ -100,9 +109,9 @@ namespace InterfaceRobot
             for (int i = 0; i < 20; i++)
             {
                 byteList[i] = (byte)(2 * i);
-                string str = Encoding.Default.GetString(byteList);
-                serialPort1.Write(str);
             }
+            serialPort1.Write(byteList,0,20);
+            robot.receivedText += "\n";
         }
     }
 }
