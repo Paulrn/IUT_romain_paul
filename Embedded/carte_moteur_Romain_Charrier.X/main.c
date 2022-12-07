@@ -8,6 +8,7 @@
 #include "adc.h"
 #include "Robot.h"
 #include "main.h"
+#include "UART.h"
 
 unsigned int result;
 
@@ -24,14 +25,13 @@ int main(void) {
     //    InitPWM();
 
     InitADC1();
+    InitUART();
 
     robotState.vitesseDroiteConsigne = 0;
     robotState.vitesseGaucheConsigne = 0;
-
     // Boucle Principale
     while (1) {
-
-        if (ADCIsConversionFinished() == 1) { //si la conversion est fini
+        if (ADCIsConversionFinished()) { //si la conversion est fini
             unsigned int * result = ADCGetResult(); //on mets result dans la meme emplacement memoire que ADCGetResult
             ADCClearConversionFinishedFlag(); //permet de remettre le flag à 
             float volts = ((float) result [4]) * 3.3 / 4096 * 3.2;
@@ -44,29 +44,23 @@ int main(void) {
             robotState.distanceTelemetreExtGauche = 34 / volts - 5;
             volts = ((float) result [3]) * 3.3 / 4096 * 3.2;
             robotState.distanceTelemetreExtDroit = 34 / volts - 5;
+            if (robotState.distanceTelemetreDroit >= 30) {
+                LED_BLANCHE = 1;
+            } else {
+                LED_BLANCHE = 0;
+            }
+            if (robotState.distanceTelemetreCentre >= 30) {
+                LED_BLEUE = 1;
+            } else {
+                LED_BLEUE = 0;
+            }
+            if (robotState.distanceTelemetreGauche >= 30) {
+                LED_ORANGE = 1;
+            } else {
+                LED_ORANGE = 0;
+            }
+            //SendMessageDirect((unsigned char *) "coucou", 7);            
         }
-
-        if (robotState.distanceTelemetreDroit >= 30) {
-            LED_BLANCHE = 1;
-        } else {
-            LED_BLANCHE = 0;
-        }
-        if (robotState.distanceTelemetreCentre >= 30) {
-            LED_BLEUE = 1;
-        } else {
-            LED_BLEUE = 0;
-        }
-        if (robotState.distanceTelemetreGauche >= 30) {
-            LED_ORANGE = 1;
-        } else {
-            LED_ORANGE = 0;
-        }
-
-
-        if (ADCIsConversionFinished() == 1) {
-
-        }
-
     } // f i n main
 }
 
