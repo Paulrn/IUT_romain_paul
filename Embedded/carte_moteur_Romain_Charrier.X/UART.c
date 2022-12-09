@@ -2,7 +2,7 @@
 #include "UART.h"
 #include "ChipConfig.h"
 
-#define BAUDRATE 115200
+#define BAUDRATE 115200 //vitesse de transmission
 #define BRGVAL ((FCY/BAUDRATE)/4)-1
 
 void InitUART(void) {

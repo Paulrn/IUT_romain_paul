@@ -29,5 +29,9 @@
 //void OperatingSystemLoop(void);
 //void SetNextRobotStateInAutomaticMode();
 
+void SendMessage(unsigned char* message, int length);
+unsigned char CB_RX1_Get(void);
+int CB_RX1_GetDataSize(void);
+
 #endif	/* MAIN_H */
 

@@ -59,7 +59,14 @@ int main(void) {
             } else {
                 LED_ORANGE = 0;
             }
-            //SendMessageDirect((unsigned char *) "coucou", 7);            
+            //SendMessageDirect((unsigned char *) "coucou", 7);
+
+            int i;
+            for (i = 0; i < CB_RX1_GetDataSize(); i++) {
+                unsigned char c = CB_RX1_Get();
+                SendMessage(&c, 1);
+            }
+
         }
     } // f i n main
 }
