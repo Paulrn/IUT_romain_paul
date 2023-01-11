@@ -15,16 +15,16 @@
             <ColumnDefinition Width="1*"/>
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
-        <GroupBox x:Name="Emission" Header="Emission" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0">
-            <TextBox x:Name="emissionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" KeyUp="emissionTextBox_KeyUp"/>
+        <GroupBox x:Name="Emission" Header="Emission" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Margin="0,0,48,159">
+            <TextBox x:Name="emissionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AcceptsReturn="True" KeyUp="emissionTextBox_KeyUp" Margin="0,0,-2,2"/>
         </GroupBox>
 
-        <GroupBox x:Name="Reception" Header="Reception" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0">
-            <TextBox x:Name="receptionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True"/>
+        <GroupBox x:Name="Reception" Header="Reception" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Margin="0,0,67,164">
+            <TextBox x:Name="receptionTextBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" IsReadOnly="True" Margin="0,0,-12,-2"/>
         </GroupBox>
-        <Button x:Name="buttonEnvoyer" Content="Envoi" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Click="buttonEnvoyer_Click"/>
-        <Button x:Name="buttonClear" Content="Clear" Grid.Column="1" HorizontalAlignment="Stretch" Grid.Row="1" VerticalAlignment="Stretch" Click="buttonClear_Click"/>
-        <Button x:Name="test" Content="Test" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="test_Click" Grid.ColumnSpan="2" Margin="340,0,338,0" Grid.Row="1" Height="40"/>
+        <Button x:Name="buttonEnvoyer" Content="Envoi" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="buttonEnvoyer_Click" Margin="239,220,59,124"/>
+        <Button x:Name="buttonClear" Content="Clear" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Click="buttonClear_Click" Margin="50,220,233,124"/>
+        <Button x:Name="test" Content="Test" HorizontalAlignment="Stretch" VerticalAlignment="Center" Click="test_Click" Grid.ColumnSpan="2" Margin="337,220,346,124" Height="35"/>
 
     </Grid>
 </Window>
